@@ -21,7 +21,7 @@ To run the hello world docker.
 
 ``` bash
 sudo systemctl status docker 
-sudo docker run hello-world 
+sudo docker run hello-world     
 ```
 To pull the Ubuntu docker 22.04.   <br>
 ``` docker pull ubuntu:22.04 ``` <br>
