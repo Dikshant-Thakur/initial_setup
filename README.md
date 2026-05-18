@@ -1,5 +1,5 @@
 ## How to setup the docker
-**Remove the old version of docker** <  br>
+**Remove the old version of docker** <br>
 `` sudo apt-get remove docker docker-engine docker.io containerd runc ``. 
 **Update the system packages**
 ``` bash
