@@ -22,7 +22,8 @@ curl -sSL [https://raw.githubusercontent.com/ros2/rosdistro/master/ros.key](http
 
 Below line automatically creates *ros2.list* in which it puts the official link of ROS2. And this *$(dpkg --print-architecture)* automatically checks whther PC is intel powered or amd64. <br>
 ```bash
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] [http://packages.ros.org/ros2/ubuntu](http://packages.ros.org/ros2/ubuntu) jammy main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null```
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] [http://packages.ros.org/ros2/ubuntu](http://packages.ros.org/ros2/ubuntu) jammy main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+```
 
 ## Step 3: Install ROS 2 Packages
 
