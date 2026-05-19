@@ -20,6 +20,11 @@ To download the official ROS2 digital security key and to save locally. <br>
 curl -sSL [https://raw.githubusercontent.com/ros2/rosdistro/master/ros.key](https://raw.githubusercontent.com/ros2/rosdistro/master/ros.key) -o /usr/share/keyrings/ros-archive-keyring.gpg
  ```
 
+OR IF THE ABOVE COMMAND OF UNIVERSE NOT WORKING. TRY TO DOWNLOAD THE OFFICIAL GPG KEY DIRECT FROM UBUNTU.
+``` bash
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F42ED6FBAB17C654
+```
+
 Below line automatically creates *ros2.list* in which it puts the official link of ROS2. And this *$(dpkg --print-architecture)* automatically checks whther PC is intel powered or amd64. <br>
 ```bash
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] [http://packages.ros.org/ros2/ubuntu](http://packages.ros.org/ros2/ubuntu) jammy main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
@@ -30,11 +35,15 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 Use this command, because on top we add ROS2 link then we have to update again. <br>
 ``` apt update ``` <br>
 
-To install ROS" humble, colcon tool, python3-argcomplete (wo tab dbakr jis se complete ho jaata hai) <br>
-``` apt install -y ros-humble-ros-base python3-colcon-common-extensions python3-argcomplete ``` <br>
+To install ROS" humble <br>
+``` apt install -y ros-humble-desktop ``` <br>
 
-## Step 4: Environment Setup
+## Step 4: Environment Setup and check
 To activate the ROS2. <br>
-``` source /opt/ros/humble/setup.bash ```
+``` source /opt/ros/humble/setup.bash ``` <br>
+To check the GUI version of it. <br>
+``` rviz2 ```  
+
+
 
 
