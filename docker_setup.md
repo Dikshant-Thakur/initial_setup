@@ -115,10 +115,10 @@ sudo docker run -it --privileged --net=host --env="DISPLAY" --env="QT_X11_NO_MIT
 ```
 
 ``` apt install mesa-utils -y ``` - This package(mesa-utils) has tool - glxinfo, glxgears. <br>
-``` glxinfo | grep "OpenGL vendor" ``` ' Layman term - This tells Gazebo which graphic cards. <br>
+``` glxinfo | grep "OpenGL vendor" ``` ' Layman term - This tells Gazebo which graphic card, Gazebo is using. <br>
 
 **How to setup VS code with running container** <br>
-Install Dev Container from the extensions. Then Left-Down corner select *><* and then select *Attach to the running container*, make sure your container is running. 
+Install Dev Container from the extensions. Then Left-Down corner select **><** and then select *Attach to the running container*, make sure your container is running. 
 
 
 
