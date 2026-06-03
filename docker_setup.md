@@ -47,6 +47,11 @@ sudo docker run -it --net=host --env="DISPLAY" -- volume="$HOME/.Xauthority:/roo
 
 After it runs, we have to verify the ubuntu and for that. Try this command. <br>
 ``` cat /etc/os-release ```
+
+## To see all the images of docker.
+``` bash
+sudo docker images
+```
 ## To check the live docker <br>
 ``` sudo docker ps ```
 
@@ -56,18 +61,18 @@ After this you will see container ID. Copy that container ID, which you want to 
 And run this line. <br>
 ``` docker start -ai <container ID> ```
 
-## To see all the images of docker.
-``` bash
-sudo docker images
-```
-
 ## To save the container and create an image <br>
 While doing this, don't exit from the docker. <br>
 
-``` sudo docker commit <contained_id>:<name> ```
+``` sudo docker commit <contained_id> <name> ```
 
 ## Check whether the image is saved or not? <br>
 ``` docker images ```
+
+## To stop the container 
+``` bash docker stop <container_id> ```
+
+
 
 ## Now to run the docker (GUI Version)
 
@@ -75,7 +80,7 @@ While doing this, don't exit from the docker. <br>
 xhost +local:docker
 # This command is to give full NVIDIA power to container
 #sudo docker run -it --privileged --net=host --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --runtime=nvidia --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all <docker-image_name> bash
-sudo docker run -it --privileged --net=host --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --runtime=nvidia --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all ubuntu22_ros2_gazebo_final_1:nvidia_done bash
+sudo docker run -it --privileged --net=host --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --runtime=nvidia --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all kiss_icp_setup_done:latest bash
 
 # Only limited computational power. NOT RECOMMENDED FOR GAZEBO COOL EXPERIENCE. 
 sudo docker run -it --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" <docker-image_name> /bin/bash

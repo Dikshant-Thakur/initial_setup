@@ -45,5 +45,12 @@ To check the GUI version of it. <br>
 ``` rviz2 ```  
 
 
+# Commands on ROS-2
+
+``` rosdep install --from-paths src --ignore-src -r -y ``` <br>
+rosdep ek tool hai jo ROS packages ki required system dependencies install karta hai. <br>
+``` --from-paths src ``` - src folder ke andar jitne ROS packages hain, unko scan karo. <br>
+``` --ignore-src ``` - Jo packages source code ke form me already src me present hain, unko install mat karo. Sirf missing external dependencies install karo. <br>
+``` -r = recursive / continue on error ``` - Agar kisi ek dependency me error aaye, toh command completely stop nahi hogi. Baaki packages pe continue karegi.
 
 
