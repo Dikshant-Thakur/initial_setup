@@ -63,21 +63,28 @@ $$
 Now hum is equation ko matrix ki form mein likh skte hai. Like this <br>
 
 $$
-\begin{bmatrix}
+\left(
+\begin{array}{cc}
 \sum X_i^2 & \sum X_i \\
 \sum X_i & n
-\end{bmatrix}
-\begin{bmatrix}
+\end{array}
+\right)
+\left(
+\begin{array}{c}
 a \\
 b
-\end{bmatrix}
+\end{array}
+\right)
 =
-\begin{bmatrix}
+\left(
+\begin{array}{c}
 \sum X_i Y_i \\
 \sum Y_i
-\end{bmatrix}
+\end{array}
+\right)
 $$
-Aur further inhe matrix format $( A \cdot X = B)$ mein convert kiya ja sakta hai.  
+
+Aur further inhe matrix format \( A \cdot X = B \) mein convert kiya ja sakta hai.
 
 Inme matrices is tarah banti hain:
 
