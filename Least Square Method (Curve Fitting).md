@@ -62,21 +62,33 @@ $$
 
 Now hum is equation ko matrix ki form mein likh skte hai. Like this <br>
 
-$$
-\begin{bmatrix}
-\sum X_i^2 & \sum X_i \\
-\sum X_i & n
-\end{bmatrix}
-\begin{bmatrix}
-a \\
-b
-\end{bmatrix}
-=
-\begin{bmatrix}
-\sum X_i Y_i \\
-\sum Y_i
-\end{bmatrix}
-$$
+<table>
+  <tr>
+    <td align="center">
+
+| ΣX²ᵢ | ΣXᵢ |
+|------|-----|
+| ΣXᵢ  | n   |
+
+</td>
+    <td align="center"><b>·</b></td>
+    <td align="center">
+
+| a |
+|---|
+| b |
+
+</td>
+    <td align="center"><b>=</b></td>
+    <td align="center">
+
+| ΣXᵢYᵢ |
+|--------|
+| ΣYᵢ   |
+
+</td>
+  </tr>
+</table>
 
 Aur further inhe matrix format $A \cdot X = B$ mein convert kiya ja sakta hai.
 
