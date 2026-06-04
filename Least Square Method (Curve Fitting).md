@@ -61,6 +61,7 @@ $$
 *Yahan \( n \) represents totoal number of observations* <br>
 
 Now hum is equation ko matrix ki form mein likh skte hai. Like this <br>
+
 $$
 \begin{bmatrix}
 \sum X_i^2 & \sum X_i \\
