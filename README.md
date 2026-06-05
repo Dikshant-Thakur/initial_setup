@@ -1,5 +1,3 @@
-# Project Initial Setup
-
 
 ## Topics
 
