@@ -125,5 +125,17 @@ sudo docker run -it --privileged --net=host --env="DISPLAY" --env="QT_X11_NO_MIT
 **How to setup VS code with running container** <br>
 Install Dev Container from the extensions. Then Left-Down corner select **><** and then select *Attach to the running container*, make sure your container is running. 
 
+## To check the size of docker
+``` bash
+sudo docker system df 
+``` 
+
+In detail <br>
+
+``` bash
+sudo docker system df -v
+
+```
+
 
 
