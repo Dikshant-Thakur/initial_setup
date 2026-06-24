@@ -1,7 +1,7 @@
 ## Topics
 
 * [**C++ Hacks**](./c++_hacks.md)
-* [**Docker Setup**](./docker_setup.md)
+* [**Docker Setup and cheatsheet**](./docker_setup.md)
 * [**GitHub**](./GitHub.md)
 * [**Jacobian**](./Jacobian/Jacobian.md)
 * [**KD Tree**](./KD_Tree/KD-Tree.md)
