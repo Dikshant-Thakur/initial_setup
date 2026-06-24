@@ -48,7 +48,7 @@ sudo docker run -it --net=host --env="DISPLAY" -- volume="$HOME/.Xauthority:/roo
 After it runs, we have to verify the ubuntu and for that. Try this command. <br>
 ``` cat /etc/os-release ```
 
-# Proceudre to use the docker. 
+# Procedure to use the docker. 
 ### Run the docker
 ``` bash
 # Run the docker
@@ -79,8 +79,14 @@ xhost +local:root
 Kyunki laptop restart hone par GUI permissions reset ho jati hain, isliye pehle laptop ki screen ka rasta kholo.
 
 ``` bash
-# Step C: Us soye hue container ko chalu karo
+# Step C: Us soye hue container ko chalu karo. "Background" (Detached mode). It is like you ask docker to open the room(container) but you didnt ask him to let you in the room.
 sudo docker start <CONTAINER_ID_YA_NAME>
+
+# or, "Foreground" (Interactive mode). In this you ask docker you to open the room and also ask docker to let in the room.
+sudo docker start -ai
+
+#Right now we are using docker for Ubuntu, so both of them are equal for us but it could affect if the application is different.
+#
 ```
 Ab us purane container ko jagane ke liye (docker run ki jagah) bas start chalao. Isse kya hua? Tumhara wahi container background mein wapas zinda (Up status) ho gaya, aur uski purani saari responsibilities (NVIDIA driver, ports) jo pehli baar run karne par jodi thi, woh dobara active ho gayi.
 
@@ -104,11 +110,6 @@ sudo docker ps
 ## To check the container of docker. <br>
 ``` bash 
 sudo docker ps -a 
-
-# After this you will see container ID. Copy that container ID, which you want to run. 
-# And run this line. 
-
-docker start -ai <container ID> 
 ``` 
 
 
@@ -143,25 +144,7 @@ Step 2 - Ab Image ko delete karo. Jab us image se jude saare containers delete h
 sudo docker rmi <IMAGE_ID>
 ```
 
-
-
-## Now to run the docker (GUI Version)
-
-``` bash
-xhost +local:docker
-# This command is to give full NVIDIA power to container
-#sudo docker run -it --privileged --net=host --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --runtime=nvidia --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all <docker-image_name> bash
-sudo docker run -it --privileged --net=host --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --runtime=nvidia --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all kiss_icp_setup_done:latest bash
-
-# Only limited computational power. NOT RECOMMENDED FOR GAZEBO COOL EXPERIENCE. 
-sudo docker run -it --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" <docker-image_name> /bin/bash
-```
-
-ubuntu22_ros2_gazebo_final_1:nvidia_done
-
-Then source it ``` source /opt/ros/humble/setup.bash ```. <br>
-
-## To use NVIDIA graphic computation in docker, we need NVIDIA Container Toolkit. 
+## How to enable graphic computaion in docker (NVIDIA Container Toolkit Installation)
 ``` bash
 # 1. NVIDIA ka GPG key download karna. Usko system ke trusted keyring me save karna
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
