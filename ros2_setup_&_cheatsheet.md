@@ -54,3 +54,64 @@ rosdep ek tool hai jo ROS packages ki required system dependencies install karta
 ``` -r = recursive / continue on error ``` - Agar kisi ek dependency me error aaye, toh command completely stop nahi hogi. Baaki packages pe continue karegi.
 
 
+
+## Build from scratch - package
+``` bash
+rm -rf build/<package_name> install/<package_name> log/
+
+# colcon it
+colcon build --packages-select <package_name
+```
+
+
+## How to setup the ros2-humble in docker
+
+
+**Update the system packages**
+``` bash
+sudo apt-get update
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release
+```
+
+**Pull the ros2 humble image**
+``` bash
+docker pull ros:humble
+```
+
+**Then name the container and run it**
+``` bash
+docker run -it --name my_ros2_container ros:humble
+```
+
+**Sourcing**
+``` bash
+source /opt/ros/humble/setup.bash
+```
+
+** Check**
+``` bash
+ros2 topic list
+
+# should be displayed 
+#/parameter_events
+#/rosout
+```
+
+# CREATION OF ROS2 PACKAGE
+## Option 1: Agar C++ (CMake) package banana hai
+C++ mein nodes likhne wale ho, toh terminal mein apne src folder ke andar jao aur yeh command chalao:
+``` bash
+ros2 pkg create --build-type ament_cmake <package_name>
+```
+## Option 2: Agar Python package banana hai
+Agar tum Python mein scripts likhne wale ho, toh src folder ke andar yeh command chalao:
+``` bash
+ros2 pkg create --build-type ament_python <package_name>
+```
+
+## Package Banane ke Baad ka Step (Crucial)
+``` bash
+colcon build --packages-select <package_name>
+source install/setup.bash
+```
+
