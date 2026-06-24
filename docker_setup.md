@@ -48,29 +48,100 @@ sudo docker run -it --net=host --env="DISPLAY" -- volume="$HOME/.Xauthority:/roo
 After it runs, we have to verify the ubuntu and for that. Try this command. <br>
 ``` cat /etc/os-release ```
 
+# Proceudre to use the docker. 
+### Run the docker
+``` bash
+# Run the docker
+sudo docker run -it --privileged --net=host --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --runtime=nvidia --gpus all -e NVIDIA_DRIVER_CAPABILITIES=all dikki69/ros2_info_final bash
+```
+what happens - docker run ne Docker Engine se kaha: "Bhai, is image ke blueprint ko use karke ek ekdum brand new, alag se isolated kamra (Container) taiyaar karo." Is command ke andar jo baki flags hain (--privileged, --net=host, --gpus all, DISPLAY), unhone us naye kamre ke sath kuch pipelines (connections) permanent jod diye—jaise tumhare laptop ka graphics card, internet, aur laptop ki screen. Aur aakhiri shabd bash ne tumhein us kamre ka terminal de diya. <br
+Tumne us naye container ke andar files modify karein, Blender dale, sab badlav kiye. Yeh saare badlav us naye container ki layer mein save ho gaye.
+
+### Exit the container
+``` bash
+exit
+```
+What happens - Jaise hi tumne exit dabaya, tum container ke terminal se baahar apne laptop ke normal terminal par aa gaye. Woh container abhi bhi tumhare laptop ki hard disk par maujood hai. Woh container ab chal nahi raha hai, woh Sleep/Freeze mode mein chala gaya hai. Jo badlav tumne kiye the (modified files, blender), woh sab us container ke andar freeze ho chuke hain, kuch bhi delete nahi hua hai. <br>
+**One more thing to note** - stop command belongs to docker and exit command belongs to linuex. Interactive session is differnet, exit runs in the docker terminal and stop command runs in the hoest terminal but result is same. 
+
+### How to reopen that container
+Ab tum agle din aaye, laptop chalu kiya, aur tumhein usi container par wapas kaam karna hai. Ab tumhein lambi command nahi chalani (kyunki run chalane se naya khaali container ban jayega). Ab tum yeh basic steps follow karoge:
+``` bash
+# Step A: Kaise check karein ki hamara container kahan hai?
+sudo docker ps -a
+#-a ka matlab hai "All" (chahe chal rahe hon ya so rahe hon, saare dikhao).
+```
+Tumhein list mein tumhara container dikhega. Uska status Exited hoga. Wahan se uski CONTAINER ID (jaise d73f2694e98e) ya uska NAME dekh lo. 
+``` bash
+#Step B: Host par screen ki permission do
+xhost +local:root
+```
+Kyunki laptop restart hone par GUI permissions reset ho jati hain, isliye pehle laptop ki screen ka rasta kholo.
+
+``` bash
+# Step C: Us soye hue container ko chalu karo
+sudo docker start <CONTAINER_ID_YA_NAME>
+```
+Ab us purane container ko jagane ke liye (docker run ki jagah) bas start chalao. Isse kya hua? Tumhara wahi container background mein wapas zinda (Up status) ho gaya, aur uski purani saari responsibilities (NVIDIA driver, ports) jo pehli baar run karne par jodi thi, woh dobara active ho gayi.
+
+``` bash
+# Step D: Uske andar enter karo
+sudo docker exec -it <CONTAINER_ID_YA_NAME> bash
+
+```
+Ab container chal raha hai, uske andar ghusne ke liye chalao. Boom! Aap wapas usi container ke terminal ke andar ho. Wahan ls karke dekhoge toh tumhari pichli modified files bhi milengi,
+
+
 ## To see all the images of docker.
 ``` bash
 sudo docker images
 ```
 ## To check the live docker <br>
-``` sudo docker ps ```
+``` bash
+sudo docker ps 
+```
 
 ## To check the container of docker. <br>
-``` sudo docker ps -a ``` <br>
-After this you will see container ID. Copy that container ID, which you want to run. <br>
-And run this line. <br>
-``` docker start -ai <container ID> ```
+``` bash 
+sudo docker ps -a 
+
+# After this you will see container ID. Copy that container ID, which you want to run. 
+# And run this line. 
+
+docker start -ai <container ID> 
+``` 
+
 
 ## To save the container and create an image <br>
 While doing this, don't exit from the docker. <br>
 
-``` sudo docker commit <contained_id> <name> ```
+``` bash
+sudo docker commit <contained_id> <name> 
 
-## Check whether the image is saved or not? <br>
-``` docker images ```
+
+docker images 
+
+ ```
 
 ## To stop the container 
 ``` bash docker stop <container_id> ```
+
+## To delete the image of the docker
+``` bash
+sudo docker rmi <IMAGE_ID_YA_NAME>
+```
+Docker bohot samajhdar hai. Agar us image se bana hua koi bhi container (chahe woh stop state mein hi kyun na ho) tumhare system mein maujood hai, toh Docker us image ko delete nahi karne dega. Woh kahega ki pehle uske bachon (containers) ko saaf karo! <br>
+Agar aisa error aaye, toh yeh do kaam karne padenge: <br>
+
+Step 1 - Pehle sudo docker ps -a karke dekh lo ki us image ka kaunsa container pada hai. Fir use delete karo:
+``` bash
+sudo docker rm <CONTAINER_ID_YA_NAME>
+#(Yahan rm use hoga kyunki hum container mita rahe hain).
+```
+Step 2 - Ab Image ko delete karo. Jab us image se jude saare containers delete ho jayein, tab wapas chalao.
+``` bash
+sudo docker rmi <IMAGE_ID>
+```
 
 
 
@@ -137,5 +208,30 @@ sudo docker system df -v
 
 ```
 
+## How to download the docker image
+
+1. Docker Hub image ko Download (Pull) karein
+``` bash
+docker pull <image_name>
+```
+then check the docker image and enjoy!.
 
 
+## How to download blender in the docker image.
+
+``` bash
+apt update
+```
+
+``` bash
+apt install -y software-properties-common sudo
+```
+
+``` bash
+apt install -y blender
+```
+
+## How to copy file from host to docker
+``` bash
+docker cp /path/to/your/host/model.zip <container_name_or_id>:/root/
+```
