@@ -1,6 +1,6 @@
 # How to use GitHub
 
-## Check with remote (Github) repository.
+## Difference check with remote (Github) repository.
 1. First fetch the data, fetching ka mtlb clone nahi. Download hoti hai information agr humein check krna ho difference. 
 ``` bash
 git fetch origin main
@@ -70,6 +70,11 @@ git branch -d feature/your-feature-name
 git remote -v
 ```
 
+### How to link the local repo with global repo.
+``` bash
+git remote add origin <PASTE_YOUR_REPOSITORY_URL_HERE>
+```
+
 ## Error and its solution
 
 ### 1. ! [rejected] main -> main (fetch first)
@@ -90,15 +95,15 @@ fir tmhe pta lg jaaega ki kaunci filoes mein fir vscode mein jaakr solve krna. <
 esa dikhega - 
 ``` bash
 <<<<<<< HEAD
-remote wala code
+local wala code
 =======
-tumhara local code
+tumhara remote code
 >>>>>> 61a8e49
 ```
 To matlab:
 
-<<<<<<< HEAD se ======= tak = GitHub (remote) version <br>
-======= se >>>>>>> tak = tumhara local version <br>
+<<<<<<< HEAD se ======= tak = Local version <br>
+======= se >>>>>>> tak = tumhara remote (github) version <br>
 
 Current Change - Ye woh version hai jo abhi branch mein maujood hai. To Current Change = GitHub/remote version <br>
 Incoming Change - Ye woh version hai jo Git apply karne ki koshish kar raha hai. To Incoming Change = tumhara local commit. <br>
@@ -133,3 +138,5 @@ git add <folder_name>
 
 #commmit
 git commit -m"commit_message"
+```
+
